@@ -13,17 +13,20 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatBadgeModule } from '@angular/material/badge';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DisplayBooksComponent } from './components/display-books/display-books.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
-    DashboardComponent
+    DashboardComponent,
+    DisplayBooksComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +44,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     MatToolbarModule,
     MatSelectModule,
     MatBadgeModule,
+    MatSnackBarModule,
   ],
   providers: [
     provideClientHydration(withEventReplay())
