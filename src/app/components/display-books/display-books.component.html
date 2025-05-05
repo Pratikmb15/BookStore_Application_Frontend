@@ -1,0 +1,65 @@
+<div class="books-container">
+    <div class="books-header">
+      <h1 class="books-title">Books <span class="books-count">{{books.length}}</span></h1>
+      
+      <mat-form-field appearance="outline" class="sort-dropdown">
+        <mat-label>Sort by relevance</mat-label>
+        <mat-select>
+          <mat-option value="relevance">Relevance</mat-option>
+          <mat-option value="price-low">Price: Low to High</mat-option>
+          <mat-option value="price-high">Price: High to Low</mat-option>
+          <mat-option value="newest">Newest First</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  
+    <div class="books-grid">
+      <div class="book-card" *ngFor="let book of books">
+        <div class="book-image-container">
+          <img [src]="book.bookImage" alt="{{ book.bookName }}" class="book-image">
+          <div class="out-of-stock" *ngIf="book.quantity===0">OUT OF STOCK</div>
+        </div>
+        <div class="book-details">
+          <h3 class="book-title">{{ book.bookName }}</h3>
+          <p class="book-author">by {{ book.author }}</p>
+          
+          <div class="book-rating">
+            <div class="stars">
+              <!-- <ng-container *ngFor="let star of getStarArray(book.rating)">
+                <mat-icon *ngIf="star === 1" class="star-icon filled">star</mat-icon>
+                <mat-icon *ngIf="star === 0.5" class="star-icon half-filled">star_half</mat-icon>
+                <mat-icon *ngIf="star === 0" class="star-icon">star_border</mat-icon>
+              </ng-container> -->
+            </div>
+            <!-- <span class="review-count">({{ book.reviewCount }})</span> -->
+          </div>
+          
+          <div class="book-price">
+            <span class="current-price">Rs. {{ book.price- book.discountPrice }}</span>
+            <span class="original-price">Rs. {{ book.price}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="pagination">
+      <button mat-icon-button [disabled]="currentPage === 1">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+      
+      <ng-container *ngFor="let page of [1, 2, 3, 4, 5, 6, 7, 8, '...', 10]">
+        <button 
+          mat-mini-fab 
+          [color]="currentPage === page ? 'primary' : ''" 
+          [disabled]="page === '...'"
+          class="page-button"
+        >
+          {{ page }}
+        </button>
+      </ng-container>
+      
+      <button mat-icon-button [disabled]="currentPage === totalPages">
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
+  </div>

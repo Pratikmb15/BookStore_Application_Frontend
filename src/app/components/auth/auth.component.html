@@ -1,83 +1,107 @@
 <div class="auth-container">
-    <!-- Image Section -->
-    <div class="image-section">
-      <img [src]="'assets/book-shopping.svg'" alt="Online Book Shopping">
-      <h2>ONLINE BOOK SHOPPING</h2>
-    </div>
-  
-    <!-- Auth Card (Form Section) -->
-    <div class="auth-card">
-      <div class="form-section">
-        <div class="tab-header">
-          <button class="tab-button" [class.active]="login" (click)="openLogin()">LOGIN</button>
-          <button class="tab-button" [class.active]="signUp" (click)="openSignUp()">SIGNUP</button>
-        </div>
-  
-        <!-- Login Form -->
-        <form *ngIf="login" [formGroup]="loginForm" class="login-form" (ngSubmit)="Login()">
-          <div class="form-group">
-            <label for="email">Email*</label>
-            <input formControlName="email" type="email" id="email" name="email" placeholder="Enter your email" required>
-          </div>
-  
-          <div class="form-group">
-            <label for="password">Password*</label>
-            <div class="password-input">
-              <input formControlName="password" [type]="hidePassword ? 'password' : 'text'" id="password" name="password" placeholder="Enter your password" required>
-              <span class="toggle-password" (click)="hidePassword = !hidePassword">
-                {{ hidePassword ? '👁️' : '👁️‍🗨️' }}
-              </span>
-            </div>
-          </div>
-  
-          <div class="forgot-password">
-            <a href="#">Forgot Password?</a>
-          </div>
-  
-          <button type="submit" class="submit-button">Login</button>
-  
-          <div class="social-login">
-            <p>OR</p>
-            <div class="social-buttons">
-              <button type="button" class="social-button facebook">
-                <span class="icon">👤</span> Facebook
-              </button>
-              <button type="button" class="social-button google">
-                <span class="icon">G</span> Google
-              </button>
-            </div>
-          </div>
-        </form>
-  
-        <!-- Signup Form -->
-        <form *ngIf="signUp" [formGroup]="signupForm" class="signup-form" (ngSubmit)="signup()">
-          <div class="form-group">
-            <label for="fullName">Full Name</label>
-            <input formControlName="fullName" type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
-          </div>
-  
-          <div class="form-group">
-            <label for="email">Email*</label>
-            <input formControlName="email" type="email" id="email" name="email" placeholder="Enter your email" required>
-          </div>
-  
-          <div class="form-group">
-            <label for="password">Password*</label>
-            <div class="password-input">
-              <input formControlName="password" [type]="hidePassword ? 'password' : 'text'" id="password" name="password" placeholder="Enter your password" required>
-              <span class="toggle-password" (click)="hidePassword = !hidePassword">
-                {{ hidePassword ? '👁️' : '👁️‍🗨️' }}
-              </span>
-            </div>
-          </div>
-  
-          <div class="form-group">
-            <label for="mobile">Mobile Number</label>
-            <input formControlName="mobileNum" type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" required>
-          </div>
-  
-          <button type="submit" class="submit-button">Signup</button>
-        </form>
+  <!-- Image Section -->
+  <div class="image-section">
+    <img [src]="'assets/book-shopping.svg'" alt="Online Book Shopping">
+    <h2>ONLINE BOOK SHOPPING</h2>
+  </div>
+
+  <!-- Auth Card (Form Section) -->
+  <div class="auth-card">
+    <div class="form-section">
+      <div class="tab-header">
+        <button class="tab-button" [class.active]="login" (click)="openLogin()">LOGIN</button>
+        <button class="tab-button" [class.active]="signUp" (click)="openSignUp()">SIGNUP</button>
       </div>
+
+      <!-- Login Form -->
+      <form *ngIf="login" [formGroup]="loginForm" class="login-form" (ngSubmit)="Login()">
+        <div class="form-group">
+          <label for="email">Email*</label>
+          <input formControlName="email" type="email" id="email" name="email" placeholder="Enter your email" required>
+          <small class="error" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['required']">
+            Email is required
+          </small>
+          <small class="error" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['email']">
+            Please enter a valid email address
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password*</label>
+          <div class="password-input">
+            <input formControlName="password" [type]="hidePassword ? 'password' : 'text'" id="password" name="password" placeholder="Enter your password" required>
+            <span class="toggle-password" (click)="hidePassword = !hidePassword">
+              {{ hidePassword ? '👁️' : '👁️‍🗨️' }}
+            </span>
+          </div>
+          <small class="error" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['required']">
+            Password is required
+          </small>
+        </div>
+
+        <div class="forgot-password">
+          <a href="#">Forgot Password?</a>
+        </div>
+
+        <button type="submit" class="submit-button">Login</button>
+
+        <div class="social-login">
+          <p>OR</p>
+          <div class="social-buttons">
+            <button type="button" class="social-button facebook">
+              <span class="icon">👤</span> Facebook
+            </button>
+            <button type="button" class="social-button google">
+              <span class="icon">G</span> Google
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Signup Form -->
+      <form *ngIf="signUp" [formGroup]="signupForm" class="signup-form" (ngSubmit)="signup()">
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input formControlName="fullName" type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+          <small class="error" *ngIf="signupForm.get('fullName')?.touched && signupForm.get('fullName')?.errors?.['required']">
+            Full Name is required
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email*</label>
+          <input formControlName="email" type="email" id="email" name="email" placeholder="Enter your email" required>
+          <small class="error" *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.errors?.['required']">
+            Email is required
+          </small>
+          <small class="error" *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.errors?.['email']">
+            Please enter a valid email address
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password*</label>
+          <div class="password-input">
+            <input formControlName="password" [type]="hidePassword ? 'password' : 'text'" id="password" name="password" placeholder="Enter your password" required>
+            <span class="toggle-password" (click)="hidePassword = !hidePassword">
+              {{ hidePassword ? '👁️' : '👁️‍🗨️' }}
+            </span>
+          </div>
+          <small class="error" *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.errors?.['required']">
+            Password is required
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label for="mobile">Mobile Number</label>
+          <input formControlName="mobileNum" type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" required>
+          <small class="error" *ngIf="signupForm.get('mobileNum')?.touched && signupForm.get('mobileNum')?.errors?.['required']">
+            Please enter a valid mobile number
+          </small>
+        </div>
+
+        <button type="submit" class="submit-button">Signup</button>
+      </form>
     </div>
   </div>
+</div>

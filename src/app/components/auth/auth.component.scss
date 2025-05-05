@@ -251,3 +251,42 @@
       }
     }
   }
+  .error {
+    color: #dc3545;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+    display: block;
+  }
+  @media screen and (max-width: 768px) {
+    .auth-container {
+      flex-direction: column;
+      padding: 1rem;
+    }
+  
+    .image-section {
+      display: none; // Hides the image section on mobile view
+    }
+  
+    .auth-card {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      margin-top: 1rem;
+      border-radius: 15px;
+    }
+  
+    .form-section {
+      padding: 1.5rem 1rem;
+    }
+  
+    .tab-header {
+      margin-bottom: 1rem;
+      gap: 1rem;
+    }
+  
+    .submit-button {
+      font-size: 1rem;
+      padding: 0.6rem;
+    }
+  }
+  

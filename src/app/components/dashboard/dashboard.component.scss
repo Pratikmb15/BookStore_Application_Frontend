@@ -1,0 +1,142 @@
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /* Header Styles */
+  .custom-header {
+    background-color: #9e2a2b !important;
+    height: 72px;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white !important;
+  
+    /* Logo Container */
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+  
+      mat-icon {
+        color: white !important;
+        font-size: 32px;
+        height: 32px;
+        width: 32px;
+      }
+  
+      .logo-text {
+        color: white !important;
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+    }
+  
+    /* Search Container - Fixed White Background */
+    .search-container {
+      flex: 1;
+      max-width: 600px;
+      margin: 0 32px;
+  
+      .custom-searchbox {
+        background-color: white;
+        border-radius: 8px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        overflow: hidden; /* Prevents border overflow */
+  
+        ::ng-deep {
+          .mat-form-field-wrapper {
+            width: 100%;
+            padding: 0;
+            background: transparent;
+          }
+  
+          .mat-form-field-flex {
+            background: white;
+            border-radius: 8px;
+            padding: 0 12px;
+            height: 48px;
+            align-items: center;
+            border: none !important; /* Removes grey border */
+          }
+  
+          .mat-form-field-outline {
+            display: none !important; /* Completely removes outline */
+          }
+  
+          .mat-form-field-infix {
+            border-top: 0;
+            padding: 0;
+          }
+  
+          .mat-input-element {
+            color: #333 !important;
+            font-size: 14px;
+            height: 48px;
+          }
+  
+          .mat-icon {
+            color: rgba(0, 0, 0, 0.54) !important;
+            margin-right: 8px;
+          }
+        }
+      }
+    }
+  
+  /* Action Buttons - White Icons */
+  .actions-container {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  
+    .custom-button {
+      color: white !important;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 4px 8px;
+      transition: background-color 0.2s;
+      line-height: 1;
+  
+      mat-icon {
+        color: white !important;
+        font-size: 24px !important;
+        height: 24px !important;
+        width: 24px !important;
+        margin: 0 !important;
+      }
+  
+      .action-label {
+        color: white !important;
+        font-size: 12px;
+        margin-top: 2px;
+      }
+  
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+      }
+    }
+  }
+  }
+  .content {
+    flex: 1;
+    padding: 16px;
+    background-color: #f5f5f5;
+  }
+  
+  .footer {
+    background-color: #2a0a0b;
+    color: white;
+    padding: 16px;
+    text-align: center;
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  }
