@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../services/User/user.service';
 
 
@@ -22,14 +22,14 @@ signUp : boolean=true;
     this.signUp=true;
     this.login=false;
     this.loginForm = this.formbuild.group({
-      email: [''],
-      password: ['']
+      email: ['',[Validators.required,Validators.email]],
+      password: ['',Validators.required]
     })
     this.signupForm = this.formbuild.group({
-      fullName: [''],
-      email: [''],
-      password: [''],
-      mobileNum: [''] 
+      fullName: ['',Validators.required],
+      email: ['',[Validators.required,Validators.email]],
+      password: ['',Validators.required],
+      mobileNum: ['',[Validators.required]] 
     });
 }
 openLogin(){
@@ -63,5 +63,23 @@ signup() {
   this.user.register(reqData).subscribe((res: any) => {
     console.log(res);
   });
+}
+get loginEmail() {
+  return this.loginForm.get('email');
+}
+get loginPassword(){
+  return this.loginForm.get('password');
+}
+get signUpFullName(){
+  return this.signupForm.get('fullName');
+}
+get signUpEmail(){
+  return this.signupForm.get('email');
+}
+get signUpPassword(){
+  return this.signupForm.get('password');
+}
+get signUpMobileNum(){
+  return this.signupForm.get('mobileNum');
 }
 }
