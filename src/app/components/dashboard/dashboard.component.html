@@ -13,10 +13,28 @@
       </div>
     
       <div class="actions-container">
-        <button mat-icon-button class="custom-button">
+        <button mat-icon-button class="custom-button" [matMenuTriggerFor]="profileMenu">
           <mat-icon>person</mat-icon>
           <span class="action-label">Profile</span>
         </button>
+        
+        <mat-menu #profileMenu="matMenu" xPosition="before">
+          <div style="padding: 8px 16px; max-width: 200px;">
+            <p style="margin: 0; font-weight: 600;">Welcome</p>
+            <small>To access account and manage orders</small>
+            <button mat-stroked-button color="primary" style="margin-top: 8px; width: 100%;" (click)="navigateToAuth()">LOGIN/SIGNUP</button>
+          </div>
+          <mat-divider></mat-divider>
+          <button mat-menu-item>
+            <mat-icon>list_alt</mat-icon>
+            <span>My Orders</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>favorite_border</mat-icon>
+            <span>Wishlist</span>
+          </button>
+        </mat-menu>
+        
         <button mat-icon-button class="custom-button">
           <mat-icon>shopping_cart</mat-icon>
           <span class="action-label">Cart</span>

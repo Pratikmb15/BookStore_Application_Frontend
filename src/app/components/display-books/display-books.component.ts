@@ -3,16 +3,16 @@ import { BookService } from '../../services/Book/book.service';
 
 interface Book {
   bookId: number;
-  description:string;
-  discountPrice: number;  
-  bookImage:string;
-  userId:number;
-  bookName:string;
-  author:string;
-  quantity:number;
-  price:number
-  createdAtDate:Date;
-  updatedAtDate:Date;
+  description: string;
+  discountPrice: number;
+  bookImage: string;
+  userId: number;
+  bookName: string;
+  author: string;
+  quantity: number;
+  price: number
+  createdAtDate: Date;
+  updatedAtDate: Date;
 }
 
 @Component({
@@ -22,15 +22,15 @@ interface Book {
   styleUrl: './display-books.component.scss'
 })
 export class DisplayBooksComponent implements OnInit {
-  error:any;
+  error: any;
   books: Book[] = [];
   currentPage = 1;
   totalPages = 10;
-  constructor(private bookService:BookService){}
+  constructor(private bookService: BookService) { }
   ngOnInit() {
-    this.fetchBooks();
-   }
-   fetchBooks() {
+    this.fetchBooksByPage(1);
+  }
+  fetchBooks() {
     this.bookService.getAllBooks().subscribe({
       next: (response: any) => {
         console.log('Books response:', response);
@@ -42,6 +42,41 @@ export class DisplayBooksComponent implements OnInit {
           console.error('Invalid response format:', response);
         }
 
+      }
+    })
+  }
+  fetchBooksByPage(page: number = 1) {
+    this.bookService.getBooksByPage(page).subscribe({
+      next: (response: any) => {
+        console.log('Paginated Books response:', response);
+        if (response && response.success && response.data) {
+          this.books = response.data;
+          this.currentPage = page;
+        } else {
+          this.error = 'Invalid response format';
+          console.error('Invalid response format:', response);
+        }
+      },
+      error: (err) => {
+        this.error = 'Failed to fetch books';
+        console.error('Fetch error:', err);
+      }
+    });
+  }
+  sortBook(order: boolean = true) {
+    this.bookService.sortBooks(order).subscribe({
+      next: (res: any) => {
+        console.log('Sorted Books are : ', res);
+        if (res && res.success && res.data) {
+          this.books = res.data;
+        } else {
+          this.error = 'Invalid response format';
+          console.error('Invalid response format:', res);
+        }
+      },
+      error: (err) => {
+        this.error = 'Failed to Sort books';
+        console.error('Sort error:', err);
       }
     })
   }

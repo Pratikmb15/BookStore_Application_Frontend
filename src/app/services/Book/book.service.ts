@@ -27,4 +27,39 @@ export class BookService {
     }
     return this.httpService.getService('https://localhost:7130/api/book',true,header);
   }
+  getBooksByPage(pageNumber:number){
+    let header = {
+      headers: new HttpHeaders(
+        {
+          'Content-type': 'application/json',
+          'Authorization': `Bearer ${this.token}`
+
+        })
+    }
+    return this.httpService.getService(`https://localhost:7130/api/book/pagination?pageNumber=${pageNumber}`,true,header);
+  }
+  sortBooks(order:boolean=true){
+    let header = {
+      headers: new HttpHeaders(
+        {
+          'Content-type': 'application/json',
+          'Authorization': `Bearer ${this.token}`
+
+        })
+    }
+    return this.httpService.getService(`https://localhost:7130/api/book/sort?sortBy=${order}`,true,header);
+    
+  }
+  searchBook(searchText:string){
+    let header = {
+      headers: new HttpHeaders(
+        {
+          'Content-type': 'application/json',
+          'Authorization': `Bearer ${this.token}`
+
+        })
+    }
+    return this.httpService.getService(`https://localhost:7130/api/book/search?searchText=${searchText}`,true,header);
+    
+  }
 }
