@@ -1,12 +1,15 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpService } from '../Http/http.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
   token: any;
+  private searchTextSubject = new BehaviorSubject<string>('');
+  searchText$ = this.searchTextSubject.asObservable();
   constructor(private httpService: HttpService) {
     this.token = localStorage.getItem('token')
     if (!this.token) {
@@ -14,6 +17,9 @@ export class BookService {
     } else {
       console.log(" Token found:", this.token);
     }
+  }
+  setSearchText(text: string) {
+    this.searchTextSubject.next(text);
   }
 
   getAllBooks() {
