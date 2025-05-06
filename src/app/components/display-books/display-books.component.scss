@@ -155,3 +155,86 @@
       }
     }
   }
+  @media (max-width: 768px) {
+    .books-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  
+    .sort-dropdown {
+      width: 100%;
+    }
+  
+    .books-title {
+      font-size: 20px;
+  
+      .books-count {
+        font-size: 14px;
+      }
+    }
+  
+    .books-grid {
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+    }
+  
+    .book-image-container {
+      height: 200px;
+      padding: 16px;
+    }
+  
+    .book-title {
+      font-size: 14px;
+    }
+  
+    .book-author {
+      font-size: 13px;
+    }
+  
+    .book-price .current-price {
+      font-size: 14px;
+    }
+  
+    .book-price .original-price {
+      font-size: 12px;
+    }
+  
+    .pagination {
+      flex-wrap: wrap;
+      gap: 6px;
+  
+      .page-button {
+        width: 28px;
+        height: 28px;
+        line-height: 28px;
+        font-size: 14px;
+      }
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .books-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .book-image-container {
+      height: 180px;
+      padding: 12px;
+    }
+  
+    .books-title {
+      font-size: 18px;
+    }
+  
+    .book-title {
+      font-size: 13px;
+    }
+  
+    .book-author,
+    .book-price .original-price,
+    .review-count {
+      font-size: 12px;
+    }
+  }
+  
