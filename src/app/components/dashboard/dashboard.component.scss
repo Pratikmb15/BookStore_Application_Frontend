@@ -140,3 +140,22 @@
       margin: 0 auto;
     }
   }
+  ::ng-deep .mat-menu-panel {
+    padding: 0 !important;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  ::ng-deep .mat-mdc-outlined-button:not(:disabled){
+    color: #A03037 !important;
+    font: normal normal normal 12px/16px Roboto;
+  }
+  ::ng-deep .mat-mdc-menu-content{
+    font: normal normal normal 12px/16px Roboto !important;
+  }
+  ::ng-deep .mat-mdc-menu-item .mat-icon-no-color{
+    color: #878787 !important;
+  }
+  ::ng-deep .mat-mdc-menu-item{
+    color: #878787 !important;
+  }

@@ -5,10 +5,10 @@
       <mat-form-field appearance="outline" class="sort-dropdown">
         <mat-label>Sort by relevance</mat-label>
         <mat-select>
-          <mat-option value="relevance">Relevance</mat-option>
-          <mat-option value="price-low">Price: Low to High</mat-option>
-          <mat-option value="price-high">Price: High to Low</mat-option>
-          <mat-option value="newest">Newest First</mat-option>
+          <mat-option value="relevance" (click)="fetchBooksByPage(1)">Relevance</mat-option>
+          <mat-option value="price-low" (click)="sortBook(true)">Price: Low to High</mat-option>
+          <mat-option value="price-high" (click)="sortBook(false)">Price: High to Low</mat-option>
+          <!-- <mat-option value="newest">Newest First</mat-option> -->
         </mat-select>
       </mat-form-field>
     </div>
@@ -43,22 +43,22 @@
     </div>
   
     <div class="pagination">
-      <button mat-icon-button [disabled]="currentPage === 1">
+      <button mat-icon-button [disabled]="currentPage === 1" (click)="fetchBooksByPage(currentPage - 1)">
         <mat-icon>chevron_left</mat-icon>
       </button>
       
-      <ng-container *ngFor="let page of [1, 2, 3, 4, 5, 6, 7, 8, '...', 10]">
+      <ng-container *ngFor="let page of [1, 2, 3, 4, 5]">
         <button 
           mat-mini-fab 
           [color]="currentPage === page ? 'primary' : ''" 
-          [disabled]="page === '...'"
+          (click)="fetchBooksByPage(page)"
           class="page-button"
         >
           {{ page }}
         </button>
       </ng-container>
       
-      <button mat-icon-button [disabled]="currentPage === totalPages">
+      <button mat-icon-button [disabled]="currentPage === totalPages" (click)="fetchBooksByPage(currentPage + 1)">
         <mat-icon>chevron_right</mat-icon>
       </button>
     </div>

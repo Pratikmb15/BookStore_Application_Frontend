@@ -14,6 +14,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatBadgeModule } from '@angular/material/badge';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatMenuModule } from '@angular/material/menu';
+import {MatDividerModule} from '@angular/material/divider';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -45,6 +47,9 @@ import { DisplayBooksComponent } from './components/display-books/display-books.
     MatSelectModule,
     MatBadgeModule,
     MatSnackBarModule,
+    MatMenuModule,
+    MatDividerModule,  
+    
   ],
   providers: [
     provideClientHydration(withEventReplay())
