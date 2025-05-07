@@ -54,6 +54,7 @@ export class BookComponent implements OnInit {
         this.isAddedToBag = true;
         this.quantity = 1;
         this.snackBar.open('Book added to Cart Successfully', '', { duration: 5000 });
+        this.cartId =  Number(this.getCartId(this.book.bookId));
       }
       , error: (err) => {
         console.error('Add to cart Failed :', err);
@@ -88,7 +89,9 @@ export class BookComponent implements OnInit {
       bookId: Number(this.book.bookId),
       bookQuantity: Number(this.quantity + 1)
     }
-     this.cartId = Number(this.getCartId(this.book.bookId))
+    console.log('Req Data : ',reqData);
+    //  this.cartId =  Number(this.getCartId(this.book.bookId));
+     console.log('cart id = ',this.cartId);
     return this.cartService.updateCart(this.cartId, reqData).subscribe({
       next: (res: any) => {
         console.log(res);
@@ -111,7 +114,7 @@ export class BookComponent implements OnInit {
         bookId: Number(this.book.bookId),
         bookQuantity: Number(this.quantity + 1)
       }
-      this.cartId = Number(this.getCartId(this.book.bookId));
+      // this.cartId = Number(this.getCartId(this.book.bookId));
       return this.cartService.updateCart(this.cartId, reqData).subscribe({
         next: (res: any) => {
           console.log(res);
@@ -129,7 +132,7 @@ export class BookComponent implements OnInit {
     }
     if (this.quantity == 1) {
 
-      this.cartId = Number(this.getCartId(this.book.bookId));
+      // this.cartId = Number(this.getCartId(this.book.bookId));
       return this.cartService.deleteCartItem(this.cartId).subscribe({
         next: (res: any) => {
           console.log(res);

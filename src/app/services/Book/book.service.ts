@@ -22,10 +22,14 @@ interface Book {
 })
 export class BookService {
   token: any;
+
   private searchTextSubject = new BehaviorSubject<string>('');
   searchText$ = this.searchTextSubject.asObservable();
+
   private selectedBookSource = new BehaviorSubject<Book | null>(null);
   selectedBook$ = this.selectedBookSource.asObservable();
+
+
   constructor(private httpService: HttpService) {
     this.token = localStorage.getItem('token')
     if (!this.token) {
@@ -34,6 +38,7 @@ export class BookService {
       console.log(" Token found:", this.token);
     }
   }
+
   setSearchText(text: string) {
     this.searchTextSubject.next(text);
   }
@@ -92,16 +97,6 @@ export class BookService {
     
   }
 
-  addBookToCart(reqData:any){
-    let header = {
-      headers: new HttpHeaders(
-        {
-          'Content-type': 'application/json',
-          'Authorization': `Bearer ${this.token}`
-
-        })
-    }
-    return this.httpService.postMethodToken('https://localhost:7130/api/Cart',reqData,true,header);
-  }
+  
 
 }
