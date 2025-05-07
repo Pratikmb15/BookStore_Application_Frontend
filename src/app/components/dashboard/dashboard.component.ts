@@ -16,4 +16,7 @@ onSearchChange(event: any) {
 navigateToAuth(){
   this.router.navigate(['']);
 }
+navigateToHome(){
+  this.router.navigate(['/home']);
+}
 }

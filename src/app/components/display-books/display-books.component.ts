@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../../services/Book/book.service';
+import { Router } from '@angular/router';
 
 interface Book {
   bookId: number;
@@ -27,7 +28,7 @@ export class DisplayBooksComponent implements OnInit {
   currentPage = 1;
   totalPages = 10;
   searchText = '';
-  constructor(private bookService: BookService) { }
+  constructor(private bookService: BookService,private router: Router) { }
   ngOnInit() {
     this.fetchBooksByPage(1);
     this.bookService.searchText$.subscribe(text => {
@@ -101,5 +102,9 @@ export class DisplayBooksComponent implements OnInit {
         console.error('search error : ', err);
       }
     })
+  }
+  onBookClick(book: Book) {
+    this.bookService.setSelectedBook(book);
+    this.router.navigate(['/home/book']);
   }
 }

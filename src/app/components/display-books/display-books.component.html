@@ -14,7 +14,7 @@
     </div>
   
     <div class="books-grid">
-      <div class="book-card" *ngFor="let book of books">
+      <div class="book-card" *ngFor="let book of books" (click)="onBookClick(book)">
         <div class="book-image-container">
           <img [src]="book.bookImage" alt="{{ book.bookName }}" class="book-image">
           <div class="out-of-stock" *ngIf="book.quantity===0">OUT OF STOCK</div>

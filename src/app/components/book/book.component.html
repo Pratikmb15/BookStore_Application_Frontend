@@ -1,0 +1,69 @@
+<div class="book-details-container">
+    <div class="left-section">
+      <div class="thumbnail-list">
+        <img [src]="book.bookImage" alt="Thumbnail" />
+      </div>
+      <div class="book-image-and-buttons">
+        <img class="main-img" [src]="book.bookImage" alt="Book Image" />
+        <div class="action-buttons">
+          <ng-container *ngIf="!isAddedToBag; else quantityControls">
+          <button class="add-to-bag"(click)="addToBag()">ADD TO BAG</button>
+        </ng-container>
+          <ng-template #quantityControls>
+            <div class="quantity-controls">
+              <button class="quantity-btn" (click)="decreaseQuantity()">−</button>
+              <span class="quantity">{{ quantity }}</span>
+              <button class="quantity-btn" (click)="increaseQuantity()">+</button>
+            </div>
+          </ng-template>
+          <button class="wishlist-btn">♥ WISHLIST</button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="book-info">
+      <h2>{{ book.bookName }}</h2>
+      <div class="author">by {{ book.author }}</div>
+  
+      <div class="book-rating">
+        <span class="rating-score">4.5★</span>
+        <span class="rating-count">(20)</span>
+      </div>
+  
+      <div class="price">
+        <span class="new">Rs.{{ book.price - book.discountPrice }}</span>
+        <span class="old">Rs.{{ book.price }}</span>
+      </div>
+
+      <div class="divider"></div>
+  
+      <div class="description">
+        <h4>Book Description</h4>
+        <p>{{ book.description }}</p>
+      </div>
+
+      <div class="divider"></div>
+  
+      <div class="customer-feedback">
+        <h4>Customer Feedback</h4>
+        <textarea placeholder="Write your review..."></textarea>
+        <div class="stars-input">
+          <span *ngFor="let star of [1, 2, 3, 4, 5]">★</span>
+        </div>
+        <button class="submit-review">Submit</button>
+      </div>
+  
+      <div class="review">
+        <div class="user-info">AC <strong>Aniket Chile</strong></div>
+        <div class="stars">★★★☆☆</div>
+        <p>Good product. Even though the translation could have been better...</p>
+      </div>
+  
+      <div class="review">
+        <div class="user-info">SB <strong>Shweta Bodkar</strong></div>
+        <div class="stars">★★★★☆</div>
+        <p>Good product. Even though the translation could have been better...</p>
+      </div>
+    </div>
+  </div>
+  

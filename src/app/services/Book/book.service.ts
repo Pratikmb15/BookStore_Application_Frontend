@@ -3,6 +3,20 @@ import { Injectable } from '@angular/core';
 import { HttpService } from '../Http/http.service';
 import { BehaviorSubject } from 'rxjs';
 
+interface Book {
+  bookId: number;
+  description: string;
+  discountPrice: number;
+  bookImage: string;
+  userId: number;
+  bookName: string;
+  author: string;
+  quantity: number;
+  price: number
+  createdAtDate: Date;
+  updatedAtDate: Date;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -10,6 +24,8 @@ export class BookService {
   token: any;
   private searchTextSubject = new BehaviorSubject<string>('');
   searchText$ = this.searchTextSubject.asObservable();
+  private selectedBookSource = new BehaviorSubject<Book | null>(null);
+  selectedBook$ = this.selectedBookSource.asObservable();
   constructor(private httpService: HttpService) {
     this.token = localStorage.getItem('token')
     if (!this.token) {
@@ -20,6 +36,13 @@ export class BookService {
   }
   setSearchText(text: string) {
     this.searchTextSubject.next(text);
+  }
+  setSelectedBook(book: Book) {
+    this.selectedBookSource.next(book);
+  }
+
+  getSelectedBook(): Book | null {
+    return this.selectedBookSource.value;
   }
 
   getAllBooks() {
@@ -68,4 +91,17 @@ export class BookService {
     return this.httpService.getService(`https://localhost:7130/api/book/search?searchText=${searchText}`,true,header);
     
   }
+
+  addBookToCart(reqData:any){
+    let header = {
+      headers: new HttpHeaders(
+        {
+          'Content-type': 'application/json',
+          'Authorization': `Bearer ${this.token}`
+
+        })
+    }
+    return this.httpService.postMethodToken('https://localhost:7130/api/Cart',reqData,true,header);
+  }
+
 }
