@@ -19,6 +19,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      cursor: pointer;
   
       mat-icon {
         color: white !important;
@@ -159,3 +160,156 @@
   ::ng-deep .mat-mdc-menu-item{
     color: #878787 !important;
   }
+
+  @media (max-width: 768px) {
+    .custom-header {
+      flex-direction: column;
+      align-items: flex-start;
+      height: auto;
+      padding: 12px;
+  
+      .logo-container {
+        margin-bottom: 8px;
+      }
+  
+      .search-container {
+        width: 100%;
+        margin: 8px 0;
+        max-width: 100%;
+      }
+  
+      .actions-container {
+        justify-content: space-between;
+        width: 100%;
+        gap: 8px;
+  
+        .custom-button {
+          flex-direction: row;
+          gap: 4px;
+  
+          .action-label {
+            font-size: 10px;
+          }
+        }
+      }
+    }
+  
+    .content {
+      padding: 8px;
+    }
+  
+    .footer {
+      padding: 12px;
+  
+      .footer-content {
+        font-size: 12px;
+      }
+    }
+  
+    ::ng-deep .mat-form-field-flex {
+      height: 40px !important;
+    }
+  
+    ::ng-deep .mat-input-element {
+      font-size: 13px !important;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .custom-header {
+      .actions-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+  
+      .search-container {
+        .custom-searchbox {
+          height: 40px;
+        }
+      }
+    }
+  
+    .footer .footer-content {
+      font-size: 10px;
+    }
+  }
+/* MOBILE/TABLET STYLES */
+@media (max-width: 768px) {
+  .custom-header {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px 16px;
+    height: auto;
+
+    .logo-container {
+      justify-content: center;
+      width: 100%;
+      margin-bottom: 8px;
+    }
+
+    .search-container {
+      width: 100%;
+      margin: 8px 0;
+
+      .custom-searchbox {
+        width: 100%;
+        height: 40px;
+
+        ::ng-deep .mat-form-field-flex {
+          height: 40px !important;
+        }
+
+        ::ng-deep .mat-input-element {
+          font-size: 14px !important;
+        }
+      }
+    }
+
+    .actions-container {
+      width: 100%;
+      justify-content: space-around;
+      margin-top: 8px;
+
+      .custom-button {
+        flex-direction: row;
+        justify-content: center;
+        gap: 6px;
+
+        .action-label {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  .content {
+    padding: 12px;
+  }
+}
+
+/* SMALL MOBILE */
+@media (max-width: 480px) {
+  .custom-header {
+    padding: 8px;
+
+    .actions-container {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 6px;
+
+      .custom-button {
+        justify-content: flex-start;
+      }
+    }
+
+    .logo-container {
+      justify-content: center;
+    }
+  }
+
+  .footer {
+    font-size: 12px;
+    padding: 12px;
+  }
+}
+  

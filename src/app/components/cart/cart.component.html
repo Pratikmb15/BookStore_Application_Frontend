@@ -1,0 +1,38 @@
+<div class="cart-container">
+    <div class="breadcrumb">Home / <strong>My cart</strong></div>
+  
+    <div class="cart-box">
+      <h2>My cart ({{ cartItems.length }})</h2>
+  
+      <div class="cart-item" *ngFor="let item of cartItems">
+        <img [src]="item.book.bookImage" alt="{{ item.book.bookName }}" class="book-image" />
+  
+        <div class="book-details">
+          <h3>{{ item.book.bookName }}</h3>
+          <p class="author">by {{ item.book.author }}</p>
+          <p class="price">
+            Rs. {{ item.book.price - item.book.discountPrice }}
+            <span class="original-price">Rs. {{ item.book.price }}</span>
+          </p>
+  
+          <div class="quantity-controls">
+            <button class="quantity-btn" (click)="decreaseQuantity(item)">−</button>
+            <span class="quantity">{{ item.bookQuantity }}</span>
+            <button class="quantity-btn" (click)="increaseQuantity(item)">+</button>
+            <span class="remove" (click)="removeItemFromCart(item)">Remove</span>
+          </div>
+        </div>
+  
+        <div class="location-dropdown">
+          <select>
+            <option selected>BridgeLabz Solutions LLP, No...</option>
+          </select>
+          <button class="place-order-btn">PLACE ORDER</button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="address-box">Address Details</div>
+    <div class="summary-box">Order summary</div>
+  </div>
+  
