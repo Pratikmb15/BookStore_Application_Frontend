@@ -17,12 +17,14 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatDividerModule} from '@angular/material/divider';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DisplayBooksComponent } from './components/display-books/display-books.component';
 import { BookComponent } from './components/book/book.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { BookComponent } from './components/book/book.component';
     AuthComponent,
     DashboardComponent,
     DisplayBooksComponent,
-    BookComponent
+    BookComponent,
+    CartComponent,
+   
   ],
   imports: [
     BrowserModule,

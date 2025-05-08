@@ -237,4 +237,23 @@
       font-size: 12px;
     }
   }
+  .book-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 8px;
   
+    .rating-score {
+      background-color: #388e3c;
+      color: #fff;
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+  
+    .rating-count {
+      font-size: 12px;
+      color: #555;
+    }
+  }

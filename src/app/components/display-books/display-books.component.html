@@ -1,6 +1,6 @@
 <div class="books-container">
     <div class="books-header">
-      <h1 class="books-title">Books <span class="books-count">{{books.length}}</span></h1>
+      <h1 class="books-title">Books <span class="books-count">( {{books.length}} items )</span></h1>
       
       <mat-form-field appearance="outline" class="sort-dropdown">
         <mat-label>Sort by relevance</mat-label>
@@ -24,12 +24,9 @@
           <p class="book-author">by {{ book.author }}</p>
           
           <div class="book-rating">
-            <div class="stars">
-              <!-- <ng-container *ngFor="let star of getStarArray(book.rating)">
-                <mat-icon *ngIf="star === 1" class="star-icon filled">star</mat-icon>
-                <mat-icon *ngIf="star === 0.5" class="star-icon half-filled">star_half</mat-icon>
-                <mat-icon *ngIf="star === 0" class="star-icon">star_border</mat-icon>
-              </ng-container> -->
+            <div class="book-rating">
+              <span class="rating-score">4.5★</span>
+              <span class="rating-count">(20)</span>
             </div>
             <!-- <span class="review-count">({{ book.reviewCount }})</span> -->
           </div>

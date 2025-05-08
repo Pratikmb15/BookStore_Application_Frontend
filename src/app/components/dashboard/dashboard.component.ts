@@ -19,4 +19,7 @@ navigateToAuth(){
 navigateToHome(){
   this.router.navigate(['/home']);
 }
+navigateToCart(){
+  this.router.navigate(['/home/cart']);
+}
 }

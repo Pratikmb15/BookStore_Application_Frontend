@@ -61,4 +61,15 @@ export class CartService {
       }
       return this.httpService.deleteServie(`https://localhost:7130/api/Cart/${cartId}`,true,header);
     }
+     getAllIemsInCart(){
+      let header = {
+        headers: new HttpHeaders(
+          {
+            'Content-type': 'application/json',
+            'Authorization': `Bearer ${this.token}`
+  
+          })
+      }
+      return this.httpService.getService('https://localhost:7130/api/Cart',true,header);
+    }
 }

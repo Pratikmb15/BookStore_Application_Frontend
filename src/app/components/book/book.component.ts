@@ -27,7 +27,7 @@ interface Book {
 export class BookComponent implements OnInit {
   book!: Book;
   isAddedToBag: boolean = false;
-  quantity: number = 1;
+  quantity: number = 0;
   cartId:number=0;
 
   error: any;
@@ -86,17 +86,13 @@ export class BookComponent implements OnInit {
 
   increaseQuantity() {
     let reqData = {
-      bookId: Number(this.book.bookId),
-      bookQuantity: Number(this.quantity + 1)
+      bookId: this.book.bookId
     }
-    console.log('Req Data : ',reqData);
-    //  this.cartId =  Number(this.getCartId(this.book.bookId));
-     console.log('cart id = ',this.cartId);
-    return this.cartService.updateCart(this.cartId, reqData).subscribe({
+    return this.cartService.addBookToCart(reqData).subscribe({
       next: (res: any) => {
         console.log(res);
-        this.quantity++;
-        this.snackBar.open('Book added to Cart Successfully', '', { duration: 5000 });
+        this.isAddedToBag = true;
+        this.quantity ++;
       }
       , error: (err) => {
         console.error('Add to cart Failed :', err);
@@ -107,49 +103,31 @@ export class BookComponent implements OnInit {
       }
     })
   }
-
-  decreaseQuantity() {
-    if (this.quantity > 1) {
-      let reqData = {
-        bookId: Number(this.book.bookId),
-        bookQuantity: Number(this.quantity + 1)
-      }
-      // this.cartId = Number(this.getCartId(this.book.bookId));
-      return this.cartService.updateCart(this.cartId, reqData).subscribe({
-        next: (res: any) => {
-          console.log(res);
-          this.quantity--;
-          // this.snackBar.open('Book removed from Cart Successfully', '', { duration: 5000 });
-        }
-        , error: (err) => {
-          console.error('Add to cart Failed :', err);
-          // this.snackBar.open('Could not remove book from Cart !', '', { duration: 5000 });
-          if (err.error) {
-            console.error('Server Response:', err.error);
-          }
-        }
-      })
-    }
-    if (this.quantity == 1) {
-
-      // this.cartId = Number(this.getCartId(this.book.bookId));
-      return this.cartService.deleteCartItem(this.cartId).subscribe({
-        next: (res: any) => {
-          console.log(res);
-          this.quantity--;
-          this.isAddedToBag = false;
-          this.snackBar.open('Book removed from Cart Successfully', '', { duration: 5000 });
-
-        },
-        error: (err) => {
-          console.error('Add to cart Failed :', err);
-          this.snackBar.open('Could not remove book from Cart !', '', { duration: 5000 });
-          if (err.error) {
-            console.error('Server Response:', err.error);
-          }
-        }
-      })
-    }
-    return;
+ async decreaseQuantity() {
+   if(this.quantity==1){
+   await this.removeItemFromCart();
+   this.isAddedToBag = false;
+   }
+   else 
+   await this.removeItemFromCart();
   }
+ async removeItemFromCart(){
+    return this.cartService.deleteCartItem(this.cartId).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.quantity--;       
+        this.snackBar.open(res.message, '', { duration: 5000 });
+
+      },
+      error: (err) => {
+        console.error('Add to cart Failed :', err);
+        this.snackBar.open('Could not remove book from Cart !', '', { duration: 5000 });
+        if (err.error) {
+          console.error('Server Response:', err.error);
+        }
+      }
+    })
+  }
+  
+
 }
