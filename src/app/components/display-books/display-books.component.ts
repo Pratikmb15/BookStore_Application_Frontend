@@ -29,14 +29,14 @@ export class DisplayBooksComponent implements OnInit {
   totalPages = 10;
   searchText = '';
   constructor(private bookService: BookService,private router: Router) { }
-  ngOnInit() {
-    this.fetchBooksByPage(1);
+ async ngOnInit() {
+   await this.fetchBooksByPage(1);
     this.bookService.searchText$.subscribe(text => {
       this.searchText = text;
       this.searchBooks(this.searchText);
     });
   }
-  fetchBooks() {
+  async fetchBooks() {
     this.bookService.getAllBooks().subscribe({
       next: (response: any) => {
         console.log('Books response:', response);

@@ -1,0 +1,72 @@
+<div class="customer-details" [class.open]="isOpen">
+    <!-- Collapsed Header -->
+    <div class="summary" (click)="toggleDetails()">
+      <div class="name">
+        {{ customerForm.value.fullName || 'Customer Details' }}
+      </div>
+      <div class="arrow">
+        <i class="icon" [ngClass]="{ 'down': !isOpen, 'up': isOpen }"></i>
+      </div>
+    </div>
+  
+    <!-- Static View (Read-only) -->
+    <div class="static-details" *ngIf="isOpen && !isEditing">
+      <div class="static-row">
+        <span><strong>Full Name:</strong> {{ customerDetails.fullName }}</span>
+        <span><strong>Mobile Number:</strong> {{ customerDetails.mobileNumber }}</span>
+      </div>
+      <div class="static-row">
+        <strong> Address:</strong>
+        <p>{{ customerDetails.address }}</p>
+      </div>
+      <div class="static-row">
+        <span><strong>City:</strong> {{ customerDetails.city }}</span>
+        <span><strong>State:</strong> {{ customerDetails.state }}</span>
+      </div>
+  
+      <div class="actions">
+        <button class="edit-btn" (click)="isEditing = true">Edit</button>
+        <button class="continue-btn" (click)="continue()">Continue</button>
+      </div>
+    </div>
+  
+    <!-- Editable Form -->
+    <form [formGroup]="customerForm" class="details-form" *ngIf="isOpen && isEditing" (ngSubmit)="submitForm()">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" formControlName="fullName" />
+          <small class="error" *ngIf="fullName?.touched && fullName?.errors?.['required']">Full Name is required</small>
+        </div>
+        <div class="form-group">
+          <label>Mobile Number</label>
+          <input type="text" formControlName="mobileNumber" />
+          <small class="error" *ngIf="mobileNumber?.touched && mobileNumber?.errors?.['required']">Mobile Number is required</small>
+        </div>
+      </div>
+  
+      <div class="form-group full-width">
+        <label> Address</label>
+        <textarea rows="3" formControlName="address"></textarea>
+        <small class="error" *ngIf="address?.touched && address?.errors?.['required']">Address is required</small>
+      </div>
+  
+      <div class="form-row">
+        <div class="form-group">
+          <label>City/Town</label>
+          <input type="text" formControlName="city" />
+          <small class="error" *ngIf="city?.touched && city?.errors?.['required']">City is required</small>
+        </div>
+        <div class="form-group">
+          <label>State</label>
+          <input type="text" formControlName="state" />
+          <small class="error" *ngIf="state?.touched && state?.errors?.['required']">State is required</small>
+        </div>
+      </div>
+  
+      <div class="form-actions">
+        <button type="submit" class="save-btn">Save</button>
+      </div>
+    </form>
+  </div>
+  
