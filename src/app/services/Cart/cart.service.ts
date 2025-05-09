@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '../Http/http.service';
 import { HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-
+  private cartQuantity = new BehaviorSubject<number>(0);
   token: any;
 
    constructor(private httpService: HttpService) {
@@ -17,6 +18,13 @@ export class CartService {
         console.log(" Token found:", this.token);
       }
     }
+    // Observable that components can subscribe to
+  cartQuantity$ = this.cartQuantity.asObservable();
+
+  // Update method
+  updateCartQuantity(quantity: number) {
+    this.cartQuantity.next(quantity);
+  }
     addBookToCart(reqData:any){
       let header = {
         headers: new HttpHeaders(

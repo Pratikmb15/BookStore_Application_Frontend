@@ -35,5 +35,15 @@ token:any
       }
       return this.httpService.getService('https://localhost:7130/api/customer/getCustomerId',true,header)
     }
+    updateCustomerDetails(customerId:number,reqData:any){
+      let header = {
+        headers: new HttpHeaders(
+          {
+            'Content-type': 'application/json',
+            'Authorization': `Bearer ${this.token}`
+          })
+      }
+      return this.httpService.putService(`https://localhost:7130/api/customer/${customerId}`,reqData,true,header)
+    }
 
 }

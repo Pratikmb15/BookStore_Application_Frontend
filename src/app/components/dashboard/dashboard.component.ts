@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BookService } from '../../services/Book/book.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CartService } from '../../services/Cart/cart.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,8 +10,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
-export class DashboardComponent {
-constructor(private router: Router,private bookService: BookService,private snackBar: MatSnackBar){}
+export class DashboardComponent implements OnInit {
+  cartQuantity: number = 0;
+constructor(private router: Router,private bookService: BookService,private cartService:CartService,private snackBar: MatSnackBar){}
+  ngOnInit(){  
+      this.cartService.cartQuantity$.subscribe(quantity => {
+        this.cartQuantity = quantity;
+      });
+  }
+
 onSearchChange(event: any) {
   this.bookService.setSearchText(event.target.value);
 }

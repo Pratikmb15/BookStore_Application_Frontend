@@ -37,7 +37,7 @@
         </mat-menu>
         
         <button mat-icon-button class="custom-button" (click)="navigateToCart()">
-          <mat-icon matBadge="1" matBadgePosition="before" >shopping_cart</mat-icon>
+          <mat-icon matBadge="{{cartQuantity}}" matBadgePosition="before" >shopping_cart</mat-icon>
           <span class="action-label">Cart</span>
         </button>
       </div>

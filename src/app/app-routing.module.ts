@@ -5,6 +5,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DisplayBooksComponent } from './components/display-books/display-books.component';
 import { BookComponent } from './components/book/book.component';
 import { CartComponent } from './components/cart/cart.component';
+import { OrderComponent } from './components/order/order.component';
 
 const routes: Routes = [
   { path: '', component: AuthComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
       { path: '', component: DisplayBooksComponent },
       {path:'book',component:BookComponent},
       {path:'cart',component:CartComponent},
+      {path:'Orders',component:OrderComponent}
 
     ]
   }

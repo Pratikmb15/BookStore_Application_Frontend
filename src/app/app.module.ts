@@ -26,6 +26,7 @@ import { DisplayBooksComponent } from './components/display-books/display-books.
 import { BookComponent } from './components/book/book.component';
 import { CartComponent } from './components/cart/cart.component';
 import { CustomerDetailsComponent } from './components/customer-details/customer-details.component';
+import { OrderComponent } from './components/order/order.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { CustomerDetailsComponent } from './components/customer-details/customer
     BookComponent,
     CartComponent,
     CustomerDetailsComponent,
+    OrderComponent,
    
   ],
   imports: [
