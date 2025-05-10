@@ -3,6 +3,8 @@ import { BookService } from '../../services/Book/book.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CartService } from '../../services/Cart/cart.service';
+import { WishlistComponent } from '../wishlist/wishlist.component';
+import { WishlistService } from '../../services/Whislist/wishlist.service';
 
 interface Book {
   bookId: number;
@@ -29,16 +31,18 @@ export class BookComponent implements OnInit {
   isAddedToBag: boolean = false;
   quantity: number = 0;
   cartId:number=0;
+  isWishlistDisabled: boolean = false;
+
 
   error: any;
 
-  constructor(private bookService: BookService, private cartService: CartService, private router: Router, private snackBar: MatSnackBar) { }
+  constructor(private bookService: BookService, private cartService: CartService, private wishlistService:WishlistService,private router: Router, private snackBar: MatSnackBar) { }
   ngOnInit() {
     const selected = this.bookService.getSelectedBook();
     if (selected) {
       this.book = selected;
     } else {
-      // handle null case, e.g., redirect to display-books
+      
       this.router.navigate(['/home']);
 
     }
@@ -55,6 +59,7 @@ export class BookComponent implements OnInit {
         this.quantity = 1;
         this.snackBar.open('Book added to Cart Successfully', '', { duration: 5000 });
         this.cartId =  Number(this.getCartId(this.book.bookId));
+        this.updateQuantity(true);
       }
       , error: (err) => {
         console.error('Add to cart Failed :', err);
@@ -65,6 +70,26 @@ export class BookComponent implements OnInit {
       }
     })
 
+  }
+  addToWishlist(){
+    let reqData={
+      bookId:Number(this.book.bookId)
+    }
+    return this.wishlistService.addItemToWishList(reqData).subscribe({
+      next:(res:any)=>{
+        console.log(res);
+        this.snackBar.open('Added book to wishlist', '', { duration: 5000 });
+        this.isWishlistDisabled = true;
+       
+      }
+      , error: (err) => {
+        console.error('Add to cart Failed :', err);
+        this.snackBar.open('Could not add book to Cart !', '', { duration: 5000 });
+        if (err.error) {
+          console.error('Server Response:', err.error);
+        }
+      }
+    })
   }
   getCartId(bookId: number) {
     return this.cartService.getCartIdByBookId(bookId).subscribe({
@@ -82,6 +107,9 @@ export class BookComponent implements OnInit {
         console.error('Fetch error:', err);
       }
     });
+  }
+  updateQuantity(add:boolean) {
+    this.cartService.adjustCartQuantity(add);
   }
 
   increaseQuantity() {
@@ -107,9 +135,11 @@ export class BookComponent implements OnInit {
    if(this.quantity==1){
    await this.removeItemFromCart();
    this.isAddedToBag = false;
+   this.updateQuantity(false);
    }
    else 
    await this.removeItemFromCart();
+ 
   }
  async removeItemFromCart(){
     return this.cartService.deleteCartItem(this.cartId).subscribe({

@@ -97,6 +97,8 @@ export class CartComponent implements OnInit{
  async decreaseQuantity(item:Cart) {
    if(this.quantity==1){
    await this.removeItemFromCart(item);
+   this.cartService.adjustCartQuantity(false);
+   this.getallCartItems();
 
    }
    else 

@@ -25,6 +25,11 @@ export class CartService {
   updateCartQuantity(quantity: number) {
     this.cartQuantity.next(quantity);
   }
+  adjustCartQuantity(isAdding: boolean) {
+    const current = this.cartQuantity.getValue();
+    const updated = isAdding ? current + 1 : Math.max(current - 1, 0);
+    this.cartQuantity.next(updated);
+  }
     addBookToCart(reqData:any){
       let header = {
         headers: new HttpHeaders(

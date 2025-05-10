@@ -1,1 +1,24 @@
-<p>order works!</p>
+<div class="my-order-container">
+    <p class="breadcrumb">Home / <span>My Order</span></p>
+  
+    <div class="order-card" *ngFor="let order of orders">
+      <div class="book-image">
+        <img [src]="order.book.bookImage" alt="{{ order.book.bookName }}" />
+      </div>
+  
+      <div class="book-details">
+        <h3>{{ order.book.bookName }}</h3>
+        <p class="author">by {{ order.book.author }}</p>
+        <p class="price">
+          <span class="current">Rs. {{ order.book.price-order.book.discountPrice }}</span>
+          <span class="original">Rs. {{ order.book.price }}</span>
+        </p>
+      </div>
+  
+      <div class="order-status">
+        <span class="dot"></span>
+        <span class="status-text">Order Placed on {{ order.orderDate | date: 'dd/MM/yyyy' }}</span>
+      </div>
+    </div>
+  </div>
+  

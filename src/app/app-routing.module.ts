@@ -6,6 +6,7 @@ import { DisplayBooksComponent } from './components/display-books/display-books.
 import { BookComponent } from './components/book/book.component';
 import { CartComponent } from './components/cart/cart.component';
 import { OrderComponent } from './components/order/order.component';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
 
 const routes: Routes = [
   { path: '', component: AuthComponent },
@@ -15,7 +16,8 @@ const routes: Routes = [
       { path: '', component: DisplayBooksComponent },
       {path:'book',component:BookComponent},
       {path:'cart',component:CartComponent},
-      {path:'Orders',component:OrderComponent}
+      {path:'orders',component:OrderComponent},
+      {path:'wishlist',component:WishlistComponent}
 
     ]
   }

@@ -86,6 +86,13 @@
                 cursor: pointer;
                
             }
+            .wishlist-btn:disabled {
+              background-color: #ccc;
+              color: #666;
+              cursor: not-allowed;
+              opacity: 0.6;
+            }
+            
         }
     }
 }

@@ -26,7 +26,7 @@ export class DisplayBooksComponent implements OnInit {
   error: any;
   books: Book[] = [];
   currentPage = 1;
-  totalPages = 10;
+  totalPages = 8;
   searchText = '';
   constructor(private bookService: BookService,private router: Router) { }
  async ngOnInit() {
@@ -51,7 +51,7 @@ export class DisplayBooksComponent implements OnInit {
       }
     })
   }
-  fetchBooksByPage(page: number = 1) {
+  async fetchBooksByPage(page: number = 1) {
     this.bookService.getBooksByPage(page).subscribe({
       next: (response: any) => {
         console.log('Paginated Books response:', response);

@@ -16,7 +16,7 @@
               <button class="quantity-btn" (click)="increaseQuantity()">+</button>
             </div>
           </ng-template>
-          <button class="wishlist-btn">♥ WISHLIST</button>
+          <button class="wishlist-btn"(click)="addToWishlist()"  [disabled]="isWishlistDisabled">♥ WISHLIST</button>
         </div>
       </div>
     </div>

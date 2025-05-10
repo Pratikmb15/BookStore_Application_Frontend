@@ -25,11 +25,11 @@
             <button mat-stroked-button color="primary" style="margin-top: 8px; width: 100%;" (click)="navigateToAuth()">LOGIN/SIGNUP</button>
           </div>
           <mat-divider></mat-divider>
-          <button mat-menu-item>
+          <button mat-menu-item (click)="navigateToMyOrders()">
             <mat-icon>list_alt</mat-icon>
             <span>My Orders</span>
           </button>
-          <button mat-menu-item>
+          <button mat-menu-item (click)="navigateToMyWishlist()">
             <mat-icon>favorite_border</mat-icon>
             <span>Wishlist</span>
           </button>
