@@ -2,7 +2,6 @@
 
 .wishlist-container {
   padding: 2rem;
-  
 
   .wishlist-header {
     display: flex;
@@ -11,17 +10,13 @@
     background: #E4E4E4;
     padding: 1rem 1.5rem;
     margin-top: 15px;
-   
-   
 
     .breadcrumb {
       font-size: 12px;
       color: #666;
-   
 
       strong {
         color: #000;
-        
       }
     }
 
@@ -42,7 +37,6 @@
       align-items: center;
       background: #fff;
       border: 1px solid #E4E4E4;
-     
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
       padding: 1rem 1.5rem;
       transition: box-shadow 0.3s;
@@ -103,6 +97,68 @@
 
         &:hover .material-icons {
           transform: scale(1.2);
+        }
+      }
+    }
+  }
+
+  // 🔽 Responsive Styles Below
+  @media (max-width: 768px) {
+    padding: 1rem;
+
+    .wishlist-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .wishlist-items {
+      .wishlist-card {
+        flex-direction: column;
+        align-items: flex-start;
+
+        .book-image {
+          margin-right: 0;
+          margin-bottom: 1rem;
+        }
+
+        .book-details {
+          width: 100%;
+        }
+
+        .delete-btn {
+          align-self: flex-end;
+          margin-top: 0.5rem;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .wishlist-header {
+      .wishlist-title {
+        font-size: 14px;
+      }
+    }
+
+    .wishlist-items {
+      .wishlist-card {
+        padding: 0.8rem 1rem;
+
+        .book-details {
+          h4 {
+            font-size: 16px;
+          }
+
+          p,
+          .price .new-price,
+          .price .old-price {
+            font-size: 13px;
+          }
+        }
+
+        .delete-btn .material-icons {
+          font-size: 20px;
         }
       }
     }

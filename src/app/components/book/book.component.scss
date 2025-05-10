@@ -305,6 +305,139 @@
       color: #555;
     }
   }
+  @media (max-width: 1024px) {
+    .book-details-container {
+      flex-direction: column;
+      gap: 40px;
+      padding: 20px;
+      border-radius: 0px;
+    }
+  
+    .left-section {
+      flex-direction: column;
+      align-items: center;
+  
+      .thumbnail-list {
+        flex-direction: row;
+        justify-content: center;
+  
+        img {
+          width: 40px;
+          height: 60px;
+        }
+      }
+  
+      .book-image-and-buttons {
+        .main-img {
+          width: 220px;
+          height: 320px;
+        }
+  
+        .action-buttons {
+          flex-direction: column;
+          gap: 15px;
+          align-items: center;
+        }
+      }
+    }
+  
+    .book-info {
+      h2 {
+        font-size: 20px;
+      }
+  
+      .price {
+        flex-direction: column;
+        align-items: flex-start;
+  
+        .new {
+          font-size: 22px;
+        }
+  
+        .old {
+          font-size: 16px;
+        }
+      }
+    }
+  
+    .customer-feedback {
+      width: 100%;
+      textarea {
+        max-width: 100%;
+      }
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .book-details-container {
+      padding: 15px;
+      gap: 30px;
+    }
+  
+    .left-section {
+      .thumbnail-list {
+        img {
+          width: 35px;
+          height: 50px;
+        }
+      }
+  
+      .book-image-and-buttons {
+        .main-img {
+          width: 180px;
+          height: 260px;
+        }
+  
+        .action-buttons {
+          flex-direction: column;
+          width: 100%;
+          gap: 10px;
+  
+          .add-to-bag,
+          .wishlist-btn {
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+          }
+        }
+      }
+    }
+  
+    .book-info {
+      h2 {
+        font-size: 18px;
+      }
+  
+      .author {
+        font-size: 14px;
+      }
+  
+      .price .new {
+        font-size: 20px;
+      }
+  
+      .description,
+      .customer-feedback,
+      .review {
+        padding: 10px 0;
+      }
+  
+      .stars {
+        font-size: 18px;
+      }
+    }
+  
+    .quantity-controls {
+      .quantity-btn {
+        padding: 6px 10px;
+        font-size: 16px;
+      }
+  
+      .quantity {
+        font-size: 16px;
+      }
+    }
+  }
   
 
   
