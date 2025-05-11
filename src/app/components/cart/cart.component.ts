@@ -39,7 +39,8 @@ export class CartComponent implements OnInit{
   error: any;
   quantity:number=1;
   cartItems:Cart[]=[];
-  isOrderSummaryOpen = true;
+  isOrderSummaryOpen:boolean = false;
+  isAddOrder:boolean=false;
   isOrderPlaced:boolean=false;
   totalPrice:number=0;
   constructor(private orderService:OrderService, private cartService: CartService, private router: Router, private snackBar: MatSnackBar) { }
@@ -50,13 +51,17 @@ export class CartComponent implements OnInit{
   navigateToHome(){
     this.router.navigate(['/home']);
   }
+  openAddressDetails(){
+    this.isAddOrder=true;
+    console.log(this.isAddOrder);
+  }
   toggleDetails() {
     this.isOrderSummaryOpen = !this.isOrderSummaryOpen;
   }
   recievedOrderSummaryRequest(){
     this.isOrderSummaryOpen=true;
   }
-    getallCartItems(){
+   async getallCartItems(){
       return this.cartService.getAllIemsInCart().subscribe({
       next:(res : any) => {
         console.log(res);

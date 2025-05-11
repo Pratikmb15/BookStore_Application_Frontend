@@ -1,7 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomerService } from '../../services/Customer/customer.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SimpleChanges, OnChanges } from '@angular/core';
 
 interface customer {
   customerId: number,
@@ -18,12 +19,13 @@ interface customer {
   templateUrl: './customer-details.component.html',
   styleUrl: './customer-details.component.scss'
 })
-export class CustomerDetailsComponent implements OnInit{
+export class CustomerDetailsComponent implements OnInit,OnChanges {
   isOpen = false;
   isEditing: boolean = false;
   isExist :boolean=false;
   error: any;
   @Output() UpdateAutoRefresh = new EventEmitter();
+  @Input() isAddOrder:boolean=false;
 
   
   
@@ -52,11 +54,16 @@ export class CustomerDetailsComponent implements OnInit{
   async ngOnInit() {
     await  this.getCustomer();
   }
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['isAddOrder'] && this.isAddOrder) {
+      this.isOpen = true; 
+    }
+  }
 
   toggleDetails() {
     this.isOpen = !this.isOpen;
   }
-  getCustomer(){
+ async getCustomer(){
     return this.custService.getCustomerData().subscribe({
       next:(res:any)=>{
         console.log(res);
@@ -129,6 +136,7 @@ export class CustomerDetailsComponent implements OnInit{
   continue() {
     // Add logic here if needed when user clicks continue
     this.UpdateAutoRefresh.emit();
+    this.isOpen = false;
     this.snackBar.open('Proceeding with saved customer details', '', { duration: 3000 });
   }
   get fullName() {

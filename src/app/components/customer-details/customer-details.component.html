@@ -11,7 +11,7 @@
     </div>
   
  <!-- Static View (Read-only) -->
-<div class="details-form" *ngIf="isOpen && !isEditing">
+<div class="details-form" *ngIf="isOpen && !isEditing && isAddOrder">
   <div class="form-row">
     <div class="form-group">
       <label>Full Name</label>
@@ -45,7 +45,7 @@
 
   
     <!-- Editable Form -->
-    <form [formGroup]="customerForm" class="details-form" *ngIf="isOpen && isEditing" >
+    <form [formGroup]="customerForm" class="details-form" *ngIf="isOpen && isEditing && isAddOrder" >
       <div class="form-row">
         <div class="form-group">
           <label>Full Name</label>

@@ -29,11 +29,11 @@
         </select>
       </div>
     </div>
-    <button class="place-order-btn">PLACE ORDER</button>
+    <button class="place-order-btn"(click)="openAddressDetails()">PLACE ORDER</button>
   </div>
 
 
-  <app-customer-details (UpdateAutoRefresh)="recievedOrderSummaryRequest()"></app-customer-details>
+  <app-customer-details (UpdateAutoRefresh)="recievedOrderSummaryRequest()" [isAddOrder]="isAddOrder"></app-customer-details>
 
     <div class="summary-box" >
       <div class="name" (click)="toggleDetails()">Order summary</div>
