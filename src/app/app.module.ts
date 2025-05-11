@@ -25,6 +25,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DisplayBooksComponent } from './components/display-books/display-books.component';
 import { BookComponent } from './components/book/book.component';
 import { CartComponent } from './components/cart/cart.component';
+import { CustomerDetailsComponent } from './components/customer-details/customer-details.component';
+import { OrderComponent } from './components/order/order.component';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +37,9 @@ import { CartComponent } from './components/cart/cart.component';
     DisplayBooksComponent,
     BookComponent,
     CartComponent,
+    CustomerDetailsComponent,
+    OrderComponent,
+    WishlistComponent,
    
   ],
   imports: [

@@ -26,23 +26,25 @@ export class DisplayBooksComponent implements OnInit {
   error: any;
   books: Book[] = [];
   currentPage = 1;
-  totalPages = 10;
+  totalPages = 8;
   searchText = '';
+  totalBooks:Book[]=[];
   constructor(private bookService: BookService,private router: Router) { }
-  ngOnInit() {
-    this.fetchBooksByPage(1);
+ async ngOnInit() {
+   await this.fetchBooksByPage(1);
     this.bookService.searchText$.subscribe(text => {
       this.searchText = text;
       this.searchBooks(this.searchText);
     });
+    await this.fetchBooks();
   }
-  fetchBooks() {
+  async fetchBooks() {
     this.bookService.getAllBooks().subscribe({
       next: (response: any) => {
         console.log('Books response:', response);
         if (response && response.success && response.data) {
           // Add UI state properties to each note
-          this.books = response.data;
+          this.totalBooks = response.data;
         } else {
           this.error = 'Invalid response format';
           console.error('Invalid response format:', response);
@@ -51,7 +53,7 @@ export class DisplayBooksComponent implements OnInit {
       }
     })
   }
-  fetchBooksByPage(page: number = 1) {
+  async fetchBooksByPage(page: number = 1) {
     this.bookService.getBooksByPage(page).subscribe({
       next: (response: any) => {
         console.log('Paginated Books response:', response);

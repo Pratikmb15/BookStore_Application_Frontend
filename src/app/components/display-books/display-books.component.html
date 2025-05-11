@@ -1,6 +1,6 @@
 <div class="books-container">
     <div class="books-header">
-      <h1 class="books-title">Books <span class="books-count">( {{books.length}} items )</span></h1>
+      <h1 class="books-title">Books <span class="books-count">( {{totalBooks.length}} items )</span></h1>
       
       <mat-form-field appearance="outline" class="sort-dropdown">
         <mat-label>Sort by relevance</mat-label>
@@ -44,7 +44,7 @@
         <mat-icon>chevron_left</mat-icon>
       </button>
       
-      <ng-container *ngFor="let page of [1, 2, 3, 4, 5]">
+      <ng-container *ngFor="let page of [1, 2]">
         <button 
           mat-mini-fab 
           [color]="currentPage === page ? 'primary' : ''" 

@@ -1,38 +1,102 @@
-<div class="cart-container">
-    <div class="breadcrumb">Home / <strong>My cart</strong></div>
-  
-    <div class="cart-box">
-      <h2>My cart ({{ cartItems.length }})</h2>
-  
-      <div class="cart-item" *ngFor="let item of cartItems">
-        <img [src]="item.book.bookImage" alt="{{ item.book.bookName }}" class="book-image" />
-  
-        <div class="book-details">
-          <h3>{{ item.book.bookName }}</h3>
-          <p class="author">by {{ item.book.author }}</p>
-          <p class="price">
+<div class="cart-container" *ngIf="!isOrderPlaced">
+  <div class="breadcrumb" (click)="navigateToHome()">Home / <strong>My cart</strong></div>
+
+  <div class="cart-box">
+    <h2>My cart ({{ cartItems.length }})</h2>
+
+    <div class="cart-item" *ngFor="let item of cartItems">
+      <img [src]="item.book.bookImage" alt="{{ item.book.bookName }}" class="book-image" />
+
+      <div class="book-details">
+        <h3>{{ item.book.bookName }}</h3>
+        <p class="author">by {{ item.book.author }}</p>
+        <p class="price">
+          Rs. {{ item.book.price - item.book.discountPrice }}
+          <span class="original-price">Rs. {{ item.book.price }}</span>
+        </p>
+
+        <div class="quantity-controls">
+          <button class="quantity-btn" (click)="decreaseQuantity(item)">−</button>
+          <span class="quantity">{{ item.bookQuantity }}</span>
+          <button class="quantity-btn" (click)="increaseQuantity(item)">+</button>
+          <span class="remove" (click)="removeItemFromCart(item)">Remove</span>
+        </div>
+      </div>
+
+      <div class="location-dropdown">
+        <select>
+          <option selected>BridgeLabz Solutions LLP, No...</option>
+        </select>
+      </div>
+    </div>
+    <button class="place-order-btn"(click)="openAddressDetails()">PLACE ORDER</button>
+  </div>
+
+
+  <app-customer-details (UpdateAutoRefresh)="recievedOrderSummaryRequest()" [isAddOrder]="isAddOrder"></app-customer-details>
+
+    <div class="summary-box" >
+      <div class="name" (click)="toggleDetails()">Order summary</div>
+    
+    <div class="order-summary"  *ngIf="isOrderSummaryOpen">
+      <div class="summary-item" *ngFor="let item of cartItems">
+        <img [src]="item.book.bookImage" alt="{{ item.book.bookName }}" class="summary-book-image" />
+
+        <div class="summary-details">
+          <h4>{{ item.book.bookName }}</h4>
+          <p class="summary-author">by {{ item.book.author }}</p>
+          <p class="summary-price">
             Rs. {{ item.book.price - item.book.discountPrice }}
-            <span class="original-price">Rs. {{ item.book.price }}</span>
+            <span class="original-summary-price">Rs. {{ item.book.price }}</span>
           </p>
-  
-          <div class="quantity-controls">
-            <button class="quantity-btn" (click)="decreaseQuantity(item)">−</button>
-            <span class="quantity">{{ item.bookQuantity }}</span>
-            <button class="quantity-btn" (click)="increaseQuantity(item)">+</button>
-            <span class="remove" (click)="removeItemFromCart(item)">Remove</span>
-          </div>
         </div>
+        <span><strong>Quantity :</strong>{{item.bookQuantity}}</span>
+      </div>
+      <div class="summary-footer">
+        <span class="total-price"><strong>Total Price :</strong> Rs. {{ totalPrice }}</span>
+        <button class="checkout-btn" (click)="placeOrder()">CHECKOUT</button>
+      </div>
+
+    </div>
+  </div>
+
+  </div>
+
+
+  <div class="success-page" *ngIf="isOrderPlaced">
+    <div class="confirmation-icon">
+      <img src="assets/OrderSuccessfull.svg" alt="Order Successful" />
+    </div>
   
-        <div class="location-dropdown">
-          <select>
-            <option selected>BridgeLabz Solutions LLP, No...</option>
-          </select>
-          <button class="place-order-btn">PLACE ORDER</button>
-        </div>
+    <p class="success-message">
+      hurray!!! your order is confirmed<br />
+      the order id is <strong>#123456</strong> save the order id for<br />
+      further communication..
+    </p>
+  
+    <div class="info-box">
+      <div class="info-column">
+        <p class="label">Email us</p>
+        <p>bookstore.com</p>
+      </div>
+      <div class="info-column">
+        <p class="label">Contact us</p>
+        <p>+91 8163475881</p>
+      </div>
+      <div class="info-column">
+        <p class="label">Address</p>
+        <p>
+          42, 14th Main, 15th Cross, Sector 4, opp to BDA complex,<br />
+          near Kumarakom restaurant, HSR Layout,<br />
+          Bangalore 560034
+        </p>
       </div>
     </div>
   
-    <div class="address-box">Address Details</div>
-    <div class="summary-box">Order summary</div>
+    <button class="continue-btn" (click)="navigateToHome()">CONTINUE SHOPPING</button>
+  
+    <footer>
+      <p>Copyright © 2020, Bookstore Private Limited. All Rights Reserved</p>
+    </footer>
   </div>
   
